@@ -1,11 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 defineProps({
   msg: String,
 })
 
 const count = ref(0)
+
+onMounted(async () => {
+  const response = await fetch('/.netlify/functions/hello-world').then(response => response.text())
+  const pokedex = await fetch('/.netlify/functions/pokedex').then(response => response.json())
+  console.log(response)
+  console.log(pokedex)
+})
+
 </script>
 
 <template>
