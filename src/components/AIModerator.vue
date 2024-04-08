@@ -2,13 +2,15 @@
   <h1>A.I. Moderator</h1>
   <v-textarea v-model="inputText" label="Enter text here"></v-textarea>
   <v-btn rounded="lg" size="x-large" block @click=onSubmit>Submit</v-btn>
+  <div>{{ prediction }}</div>
 </template>
 
 <script setup>
   import { ref } from 'vue'
   import axios from 'axios';
   
-  const AI_ANALYZER = '/.netlify/functions/post-analyzer'
+  //const AI_ANALYZER = '/.netlify/functions/post-analyzer'
+  const AI_ANALYZER = 'http://Ai-moderator-api-docker-amd-env.eba-tppm6ecm.us-east-1.elasticbeanstalk.com/analyze'
   const inputText = ref('')
   const prediction = ref('')
 
@@ -18,16 +20,30 @@
     console.log('clicked!', inputText.value)
 
     const payload = {
-      "text": inputText.value
+      text: inputText.value
     }
-
-    axios.post(AI_ANALYZER, payload)
+    
+    const response = await fetch(AI_ANALYZER, {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    /*
+    axios.post(AI_ANALYZER, payload, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then(function (response) {
       console.log(response);
+      prediction = response
     })
     .catch(function (error) {
       console.log(error);
     });
+    */
   }
 
 </script>
