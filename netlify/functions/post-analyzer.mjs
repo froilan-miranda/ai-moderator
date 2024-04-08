@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async (event, context) => {
+export default async (req, context) => {
   const POST_ANALYZER = 'Ai-moderator-api-docker-amd-env.eba-tppm6ecm.us-east-1.elasticbeanstalk.com/analyze'
 
   console.log('in serverless function')
