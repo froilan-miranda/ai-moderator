@@ -20,9 +20,10 @@
     console.log('clicked!', inputText.value)
 
     const payload = {
-      text: inputText.value
+      "text": inputText.value
     }
     
+    /*
     const response = await fetch(AI_ANALYZER, {
       method: "POST", // or 'PUT'
       headers: {
@@ -30,20 +31,19 @@
       },
       body: JSON.stringify(payload),
     });
-    /*
-    axios.post(AI_ANALYZER, payload, {
+    */
+    axios.post(AI_ANALYZER, JSON.stringify(payload), {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     })
     .then(function (response) {
       console.log(response);
-      prediction = response
+      prediction.value = response.data.result
     })
     .catch(function (error) {
       console.log(error);
     });
-    */
   }
 
 </script>
