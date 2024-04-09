@@ -9,6 +9,7 @@ export default async (req, context) => {
 
   //return new Response(JSON.stringify(data))
   
+  /*
   const response = await axios.post(POST_ANALYZER, JSON.stringify({
     text: req.text,
   }))
@@ -19,6 +20,7 @@ export default async (req, context) => {
   .catch(function (error) {
     console.log(error);
   });
+  */
 
 
   return new Response(JSON.stringify(req))

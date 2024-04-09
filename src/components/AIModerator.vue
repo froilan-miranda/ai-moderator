@@ -10,7 +10,7 @@
   import axios from 'axios';
   
   //const AI_ANALYZER = '/.netlify/functions/post-analyzer'
-  const AI_ANALYZER = 'http://Ai-moderator-api-docker-amd-env.eba-tppm6ecm.us-east-1.elasticbeanstalk.com/analyze'
+  const AI_ANALYZER = 'https://g0xxitfr9a.execute-api.us-east-1.amazonaws.com/analyze'
   const inputText = ref('')
   const prediction = ref('')
 
