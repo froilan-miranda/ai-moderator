@@ -1,11 +1,13 @@
 <template>
-  <h1>A.I. Moderator</h1>
-  <p>I'd love to know what you think about anything. Feel free to express yourself, but don't be toxic. Nobody loves toxicity :( But if you do, I'm sure there is some corner of the internet that will welcome you. </p>
+  <h1>ChinWag</h1>
+  <span class="text-body-2">Powered by A.I. Moderator a Hypnopaedia product</span>
+  <p class="my-4 text-subtitle-1">I'd love to know what you think about anything. Feel free to express yourself, but don't be toxic. Nobody enjoys toxicity :(</p>
+  <p class="my-4">But if you do, I'm sure there is some other corner of the internet that will welcome you. </p>
   <v-textarea v-model="inputText" label="Enter text here"></v-textarea>
   <v-btn rounded="lg" size="x-large" block @click=onSubmit>Submit</v-btn>
   <div>{{ prediction }}</div>
   <h2 class="mt-4">Previous Post</h2>
-  <div>
+  <v-card>
     <v-virtual-scroll
       :height="300"
       :items="acceptedPosts"
@@ -14,8 +16,8 @@
         {{ item }}
       </template>
     </v-virtual-scroll>
-  </div>
-<div class="text-center ma-2">
+  </v-card>
+  <div class="text-center ma-2">
     <v-snackbar
       v-model="snackbar"
     >
@@ -55,23 +57,22 @@
     })
     .then(function (response) {
       console.log(response);
-      processResponse(response.data.result, inputText.value) })
+      processResponse(response.data.data, inputText.value) })
     .catch(function (error) {
       console.log(error);
     });
   }
 
   function processResponse(res, post) {
-    if(res.includes("sober")){
+    if(res.categories.includes("sober")){
       //post response
       acceptedPosts.value.unshift(post)
     } else {
-      console.log(typeof res)
-      toxicText.value = 'Your post was found to be toxic, and will not be posted'
-      snackbar.value = true
       // alert toxicity
-      
+      toxicText.value = 'Your post was found to contain a(n) ' + res.categories.join(', ').replace('_', ' ') + ' comment(s) :(, and will not be posted...shame'
+      snackbar.value = true
     }
+    inputText.value = ''
   }
 
 </script>
