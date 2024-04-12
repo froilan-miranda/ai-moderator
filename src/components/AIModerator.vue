@@ -2,7 +2,7 @@
   <h1>ChinWag</h1>
   <span class="text-body-2">Powered by A.I. Moderator a Hypnopaedia product</span>
   <p class="my-4 text-subtitle-1">I'd love to know what you think about anything. Feel free to express yourself, but don't be toxic. Nobody enjoys toxicity :(</p>
-  <p class="my-4">But if you do, I'm sure there is some other corner of the internet that will welcome you. </p>
+  <p class="my-4">But if you do enjoy posting that kind of thing, I'm sure there is some other corner of the internet that will welcome you.</p>
   <v-textarea v-model="inputText" label="Enter text here"></v-textarea>
   <v-btn rounded="lg" size="x-large" block @click=onSubmit>Submit</v-btn>
   <div>{{ prediction }}</div>
